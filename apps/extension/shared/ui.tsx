@@ -56,17 +56,17 @@ export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
   }
 
   return (
-    <div ref={rootRef} className={`fpm-language-switcher ${compact ? "fpm-language-switcher--compact" : ""}`} onBlur={(event) => {
+    <div ref={rootRef} className={`cma-language-switcher ${compact ? "cma-language-switcher--compact" : ""}`} onBlur={(event) => {
       if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false);
     }}>
-      <button ref={buttonRef} type="button" className="fpm-language-trigger" aria-label={`${t("languageLabel")}: ${selected.name}`} aria-haspopup="listbox" aria-expanded={open} aria-controls={open ? listId : undefined} onClick={() => open ? setOpen(false) : openList()} onKeyDown={(event) => {
+      <button ref={buttonRef} type="button" className="cma-language-trigger" aria-label={`${t("languageLabel")}: ${selected.name}`} aria-haspopup="listbox" aria-expanded={open} aria-controls={open ? listId : undefined} onClick={() => open ? setOpen(false) : openList()} onKeyDown={(event) => {
         if (event.key === "ArrowDown" || event.key === "ArrowUp") { event.preventDefault(); openList(); }
       }}>
-        <svg className="fpm-language-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c-3 3-4 6-4 9s1 6 4 9M12 3c3 3 4 6 4 9s-1 6-4 9" /></svg>
+        <svg className="cma-language-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c-3 3-4 6-4 9s1 6 4 9M12 3c3 3 4 6 4 9s-1 6-4 9" /></svg>
         <span>{compact ? language.split("_")[0].toUpperCase() : selected.name}</span>
-        <svg className="fpm-language-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="m3 6 5 5 5-5" /></svg>
+        <svg className="cma-language-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="m3 6 5 5 5-5" /></svg>
       </button>
-      {open && <div id={listId} className="fpm-language-menu" role="listbox" aria-label={t("languageLabel")} onKeyDown={(event) => {
+      {open && <div id={listId} className="cma-language-menu" role="listbox" aria-label={t("languageLabel")} onKeyDown={(event) => {
         if (event.key === "ArrowDown") { event.preventDefault(); move(1); }
         else if (event.key === "ArrowUp") { event.preventDefault(); move(-1); }
         else if (event.key === "Home") { event.preventDefault(); setActiveIndex(0); }
@@ -83,10 +83,10 @@ export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
           }
         }
       }}>
-        {languages.map(({ code, name }, index) => <button key={code} ref={(node) => { optionRefs.current[index] = node; }} type="button" role="option" aria-selected={language === code} tabIndex={index === activeIndex ? 0 : -1} className="fpm-language-option" onClick={() => void choose(code)}>
-          <span className="fpm-language-option-code">{code.toUpperCase()}</span><span>{name}</span><span className="fpm-language-check" aria-hidden="true">{language === code ? "✓" : ""}</span>
+        {languages.map(({ code, name }, index) => <button key={code} ref={(node) => { optionRefs.current[index] = node; }} type="button" role="option" aria-selected={language === code} tabIndex={index === activeIndex ? 0 : -1} className="cma-language-option" onClick={() => void choose(code)}>
+          <span className="cma-language-option-code">{code.toUpperCase()}</span><span>{name}</span><span className="cma-language-check" aria-hidden="true">{language === code ? "✓" : ""}</span>
         </button>)}
-        {saveError && <p className="fpm-language-error" role="alert">{t("languageSaveFailed")}</p>}
+        {saveError && <p className="cma-language-error" role="alert">{t("languageSaveFailed")}</p>}
       </div>}
     </div>
   );
@@ -103,7 +103,7 @@ export function Button({
   return (
     <button
       type="button"
-      className={`fpm-button fpm-button--${variant} ${className}`.trim()}
+      className={`cma-button cma-button--${variant} ${className}`.trim()}
       {...props}
     >
       {children}
@@ -113,9 +113,9 @@ export function Button({
 
 export function Brand({ compact = false }: { compact?: boolean }) {
   return (
-    <div className={`fpm-brand ${compact ? "fpm-brand--compact" : ""}`}>
-      <span className="fpm-brand-mark" aria-hidden="true"><span /></span>
-      <span className="fpm-brand-copy">
+    <div className={`cma-brand ${compact ? "cma-brand--compact" : ""}`}>
+      <span className="cma-brand-mark" aria-hidden="true"><span /></span>
+      <span className="cma-brand-copy">
         <strong title={t("extensionName")}>{t("extensionName")}</strong>
         {!compact && <small>{t("brandTagline")}</small>}
       </span>
@@ -127,7 +127,7 @@ export function Badge({ children, tone = "neutral" }: {
   children: ReactNode;
   tone?: "neutral" | "good" | "warn" | "bad";
 }) {
-  return <span className={`fpm-badge fpm-badge--${tone}`}>{children}</span>;
+  return <span className={`cma-badge cma-badge--${tone}`}>{children}</span>;
 }
 
 export function Notice({ title, children, tone = "neutral", action }: {
@@ -137,7 +137,7 @@ export function Notice({ title, children, tone = "neutral", action }: {
   action?: ReactNode;
 }) {
   return (
-    <div className={`fpm-notice fpm-notice--${tone}`} role={tone === "bad" ? "alert" : "status"}>
+    <div className={`cma-notice cma-notice--${tone}`} role={tone === "bad" ? "alert" : "status"}>
       <div>
         {title && <strong>{title}</strong>}
         <div>{children}</div>
@@ -172,16 +172,16 @@ export function Dialog({ title, children, onClose, actions, className = "" }: {
   return (
     <dialog
       ref={ref}
-      className={`fpm-dialog ${className}`.trim()}
+      className={`cma-dialog ${className}`.trim()}
       aria-labelledby="dialog-title"
       onCancel={(event) => { event.preventDefault(); onClose(); }}
     >
-      <div className="fpm-dialog-header">
+      <div className="cma-dialog-header">
         <h2 id="dialog-title" tabIndex={-1} ref={titleRef}>{title}</h2>
-        <Button variant="quiet" className="fpm-icon-button" onClick={onClose} aria-label={t("close")}>×</Button>
+        <Button variant="quiet" className="cma-icon-button" onClick={onClose} aria-label={t("close")}>×</Button>
       </div>
-      <div className="fpm-dialog-body">{children}</div>
-      {actions && <div className="fpm-dialog-actions">{actions}</div>}
+      <div className="cma-dialog-body">{children}</div>
+      {actions && <div className="cma-dialog-actions">{actions}</div>}
     </dialog>
   );
 }
@@ -192,9 +192,9 @@ export function Feedback({ message, tone, onDismiss }: {
   onDismiss: () => void;
 }) {
   return (
-    <div className={`fpm-feedback fpm-feedback--${tone}`} role={tone === "bad" ? "alert" : "status"}>
+    <div className={`cma-feedback cma-feedback--${tone}`} role={tone === "bad" ? "alert" : "status"}>
       <span>{message}</span>
-      <Button variant="quiet" className="fpm-icon-button" onClick={onDismiss} aria-label={t("close")}>×</Button>
+      <Button variant="quiet" className="cma-icon-button" onClick={onDismiss} aria-label={t("close")}>×</Button>
     </div>
   );
 }
