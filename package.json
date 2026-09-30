@@ -1,0 +1,10 @@
+{
+  "name": "chatgpt-codex-multi-account-switcher",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": { "build": "node scripts/build.mjs", "typecheck": "tsc --noEmit", "test": "tsx --test tests/*.test.ts" },
+  "dependencies": { "react": "19.3.0", "react-dom": "19.3.0" },
+  "devDependencies": { "@types/node": "24.10.1", "@types/react": "19.3.0", "@types/react-dom": "19.3.0", "chrome-types": "0.1.450", "esbuild": "0.28.2", "tsx": "4.23.15", "typescript": "7.0.2" }
+}

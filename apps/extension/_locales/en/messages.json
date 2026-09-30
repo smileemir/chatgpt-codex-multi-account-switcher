@@ -1,0 +1,5 @@
+{
+  "extensionName": { "message": "ChatGPT Codex Multi Account Switcher" },
+  "extensionDescription": { "message": "Local-first ChatGPT and Codex multi-account switching with persistent coding sessions." },
+  "brandTagline": { "message": "ChatGPT/Codex session continuity" }
+}
